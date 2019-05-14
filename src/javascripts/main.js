@@ -1,4 +1,9 @@
-import 'bootstrap';
+import boards from './components/boards/boards';
+
 import '../styles/main.scss';
 
-console.error('It worked!!!');
+const init = () => {
+  boards.initBoards();
+};
+
+init();
