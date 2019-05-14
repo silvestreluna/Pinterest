@@ -1,4 +1,4 @@
 import 'bootstrap';
 import '../styles/main.scss';
 
-console.error('hello');
+console.error('It worked!');
