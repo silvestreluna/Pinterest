@@ -1,6 +1,8 @@
+import util from '../../helpers/util';
 import boardData from '../../helpers/data/boardsData';
 import pins from '../pins/pins';
-import util from '../../helpers/util';
+import pinsData from '../../helpers/data/pinsData';
+
 
 const seePinDiv = (e) => {
   const boardId = e.target.closest('.card').id;
@@ -26,7 +28,7 @@ const domBuilder = (Array) => {
     domString += `<div id=${board.id} class="card p-2">`;
     domString += '<div class="card-body">';
     domString += `<p>${board.name}</p>`;
-    domString += '<button class="btn btn-warning see-pins">Pins</button>';
+    domString += `<button class="btn btn-warning see-pins">${board.pins.length} Pins</button>`;
     domString += '</div>';
     domString += '</div>';
     domString += '</div>';
@@ -38,11 +40,11 @@ const domBuilder = (Array) => {
 
 const initBoards = () => {
   boardData.loadBoards()
-    .then((resp) => {
-      const boardsArray = resp.data.boards;
-      domBuilder(boardsArray);
+    .then(resp => pinsData.getPinsForEachBoard(resp.data.boards))
+    .then((boardsWithPins) => {
+      domBuilder(boardsWithPins);
     })
-    .catch(err => console.error('error from loadBoards', err));
+    .catch(err => console.error('error from initBoards request', err));
 };
 
 export default { initBoards };
