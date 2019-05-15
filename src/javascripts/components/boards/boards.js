@@ -1,4 +1,5 @@
 import boardData from '../../helpers/data/boardsData';
+import pins from '../pins/pins';
 import util from '../../helpers/util';
 
 const seePinDiv = (e) => {
@@ -6,6 +7,7 @@ const seePinDiv = (e) => {
   console.error('You clicked a button!', boardId);
   document.getElementById('boards-page').classList.add('hide');
   document.getElementById('pins-page').classList.remove('hide');
+  pins.initPins(boardId);
 };
 
 
